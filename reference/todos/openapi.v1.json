@@ -22,14 +22,7 @@
   "produces": [
     "application/json"
   ],
-  "securityDefinitions": {
-    "apikey": {
-      "name": "apikey",
-      "type": "apiKey",
-      "in": "query",
-      "description": "Use `?apikey=123` to authenticate requests. It's super secure."
-    }
-  },
+  "securityDefinitions": {},
   "tags": [
     {
       "name": "Todos"
@@ -122,11 +115,7 @@
             "$ref": "../common/openapi.v1.yaml#/responses/500"
           }
         },
-        "security": [
-          {
-            "apikey": []
-          }
-        ]
+        "security": []
       },
       "delete": {
         "operationId": "DELETE_todo",
@@ -148,11 +137,7 @@
             "$ref": "../common/openapi.v1.yaml#/responses/500"
           }
         },
-        "security": [
-          {
-            "apikey": []
-          }
-        ]
+        "security": []
       }
     },
     "/todos": {
@@ -199,11 +184,7 @@
             "$ref": "../common/openapi.v1.yaml#/responses/500"
           }
         },
-        "security": [
-          {
-            "apikey": []
-          }
-        ],
+        "security": [],
         "description": "This creates a Todo object.\n\nTesting `inline code`."
       },
       "get": {
