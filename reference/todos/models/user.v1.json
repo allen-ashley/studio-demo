@@ -20,5 +20,8 @@
     "Todos",
     "User"
   ],
-  "description": ""
+  "description": "",
+  "x-examples": {
+    "example-1": {}
+  }
 }
