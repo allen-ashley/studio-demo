@@ -1,0 +1,1109 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "",
+        "title": "Fraud Classification",
+        "description": ""
+    },
+    "paths": {
+        "/candidates/{emailAddress}": {
+            "parameters": [
+                {
+                    "name": "emailAddress",
+                    "in": "path",
+                    "description": "The email of the candidate to be updated.",
+                    "required": true,
+                    "type": "string",
+                    "format": "email"
+                }
+            ],
+            "put": {
+                "operationId": "PUT_candidates-emailAddress",
+                "tags": [
+                    "Endpoints"
+                ],
+                "description": "Updates the current candidate classification with the new classification. The existing classification is replaced entirely. If the email in the path does not match the email in the request payload an error will be returned.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/base-candidate-info"
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/trait:requireApiKey:x-api-key"
+                    },
+                    {
+                        "$ref": "#/parameters/trait:overrideReporter:reporter_override"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/candidate-info"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/trait:standardApiResponses:400"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:requireApiKey:403"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardApiResponses:500"
+                    },
+                    "502": {
+                        "$ref": "#/responses/trait:standardApiResponses:502"
+                    }
+                },
+                "x-stoplight": {
+                    "id": "PUT_candidates-emailAddress",
+                    "beforeScript": null,
+                    "afterScript": null,
+                    "public": true,
+                    "mock": {
+                        "enabled": false,
+                        "dynamic": false,
+                        "statusCode": 200
+                    }
+                }
+            },
+            "patch": {
+                "operationId": "PATCH_candidates-emailAddress",
+                "tags": [
+                    "Endpoints"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/candidate-patch"
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/trait:requireApiKey:x-api-key"
+                    },
+                    {
+                        "$ref": "#/parameters/trait:overrideReporter:reporter_override"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/candidate-info"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "emailAddress": "0bTfP8@BOFiNICAkrTmJbXleMUIgHqLLlYY.ojpm",
+                                "fraudClassification": {
+                                    "blockStatus": "Unblocked",
+                                    "reporter": "None",
+                                    "partyType": "ThirdParty",
+                                    "siftScore": 1,
+                                    "decisionDatetime": "4195-12-08T03:01:50.814Z"
+                                },
+                                "permissions": [
+                                    "GoSearchable",
+                                    "CountTowardsJobViews",
+                                    "AttemptToGoSearchable",
+                                    "AttemptToApply",
+                                    "CountTowardsJobViews"
+                                ]
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/trait:standardApiResponses:400"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:requireApiKey:403"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardApiResponses:500"
+                    },
+                    "502": {
+                        "$ref": "#/responses/trait:standardApiResponses:502"
+                    }
+                },
+                "x-stoplight": {
+                    "id": "PATCH_candidates-emailAddress",
+                    "beforeScript": null,
+                    "afterScript": null,
+                    "public": true,
+                    "mock": {
+                        "enabled": false,
+                        "dynamic": false,
+                        "statusCode": 200
+                    }
+                }
+            },
+            "get": {
+                "operationId": "GET_candidates-emailAddress",
+                "tags": [
+                    "Endpoints"
+                ],
+                "description": "Gets a candidate.",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/trait:requireApiKey:x-api-key"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/candidate-info"
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/trait:standardApiResponses:400"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:requireApiKey:403"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardApiResponses:500"
+                    },
+                    "502": {
+                        "$ref": "#/responses/trait:standardApiResponses:502"
+                    }
+                },
+                "x-stoplight": {
+                    "id": "GET_candidates-emailAddress",
+                    "beforeScript": null,
+                    "afterScript": null,
+                    "public": true,
+                    "mock": {
+                        "enabled": false,
+                        "dynamic": false,
+                        "statusCode": 200
+                    }
+                }
+            }
+        },
+        "/candidates/report": {
+            "post": {
+                "operationId": "POST_candidates-report",
+                "tags": [
+                    "Deprecated"
+                ],
+                "description": "This request is deprecated and scheduled for removal. It should not be used.\n\nRetrieve the classifications of a list of candidates.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/email-addresses"
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/trait:requireApiKey:x-api-key"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/candidate-info"
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/responses/trait:standardApiResponses:400"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:requireApiKey:403"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardApiResponses:500"
+                    },
+                    "502": {
+                        "$ref": "#/responses/trait:standardApiResponses:502"
+                    }
+                },
+                "x-stoplight": {
+                    "id": "POST_candidates-report",
+                    "beforeScript": null,
+                    "afterScript": null,
+                    "public": true,
+                    "mock": {
+                        "enabled": false,
+                        "dynamic": false,
+                        "statusCode": 200
+                    }
+                }
+            }
+        }
+    },
+    "parameters": {
+        "trait:requireApiKey:x-api-key": {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "The API key required to access the API",
+            "required": true,
+            "type": "string"
+        },
+        "trait:overrideReporter:reporter_override": {
+            "name": "reporter_override",
+            "in": "query",
+            "description": "Flag to override the reporter hierarchy and force an update of the classification.",
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "responses": {
+        "trait:201:201": {
+            "description": ""
+        },
+        "trait:401403:401": {
+            "description": ""
+        },
+        "trait:401403:403": {
+            "description": ""
+        },
+        "trait:401403404:401": {
+            "description": ""
+        },
+        "trait:401403404:403": {
+            "description": ""
+        },
+        "trait:401403404:404": {
+            "description": ""
+        },
+        "trait:requireApiKey:403": {
+            "description": "",
+            "schema": {
+                "type": "object",
+                "description": "Unauthorized user",
+                "properties": {
+                    "messages": {
+                        "type": "array",
+                        "description": "Response messages",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "messages"
+                ]
+            }
+        },
+        "trait:standardApiResponses:400": {
+            "description": "",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "messages": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "trait:standardApiResponses:500": {
+            "description": "",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "messages": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "trait:standardApiResponses:502": {
+            "description": "",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "messages": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "customer-response": {
+            "title": "Customer Response",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "Active",
+                        "Inactive",
+                        "Deleted"
+                    ]
+                },
+                "customerContact": {
+                    "$ref": "#/definitions/customercontact"
+                },
+                "externalId": {
+                    "type": "integer"
+                },
+                "primaryCompanyId": {
+                    "type": "integer"
+                },
+                "userName": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "customerPermissions": {
+                    "$ref": "#/definitions/customerpermissions"
+                },
+                "memberCompanyList": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "preferences": {
+                    "$ref": "#/definitions/preferences"
+                },
+                "activeCompanyId": {
+                    "type": "integer"
+                }
+            },
+            "example": {
+                "id": "integer (required)",
+                "status": "string (required)",
+                "customerContact": {
+                    "id": "string (required)",
+                    "firstName": "string (required)",
+                    "lastName": "string (required)",
+                    "middleName": "string (required)",
+                    "emailAddress": "string (required)",
+                    "phoneNumber": "string (required)",
+                    "phoneNumberExt": "string (required)",
+                    "altPhoneNumber": "string (required)",
+                    "altPhoneNumberExt": "string (required)",
+                    "faxPhoneNumber": "string (required)",
+                    "faxPhoneNumberExt": "string (required)",
+                    "addressOne": "string (required)",
+                    "addressTwo": "string (required)",
+                    "country": "string (required)",
+                    "municipality": "string (required)",
+                    "region": "string (required)",
+                    "postalCode": "string (required)",
+                    "jobPostingEmail": "string (required)",
+                    "url": "string (required)",
+                    "twitterHandle": "string (required)"
+                },
+                "externalId": "integer (required)",
+                "primaryCompanyId": "integer (required)",
+                "userName": "string (required)",
+                "password": "string (required)",
+                "customerPermissions": {
+                    "dtnCommunications": "boolean (required)",
+                    "companyProfileAdmin": "boolean (required)",
+                    "companyNetworkAdmin": "boolean (required)",
+                    "recruiterNetworkProfile": "boolean (required)",
+                    "companyNetworkTMTab": "boolean (required)",
+                    "groupAccountAdmin": "boolean (required)",
+                    "groupAdd": "boolean (required)",
+                    "groupView": "boolean (required)",
+                    "groupUpdate": "boolean (required)",
+                    "groupDelete": "boolean (required)",
+                    "userView": "boolean (required)",
+                    "userUpdate": "boolean (required)",
+                    "userAddPrimaryGroupUsers": "boolean (required)",
+                    "userViewPrimaryGroupUsers": "boolean (required)",
+                    "userEditPrimaryGroupUsers": "boolean (required)",
+                    "userDeletePrimaryGroupUsers": "boolean (required)",
+                    "userAddAll": "boolean (required)",
+                    "userViewAll": "boolean (required)",
+                    "userEditAll": "boolean (required)",
+                    "userDeleteAll": "boolean (required)",
+                    "jobListingAdmin": "boolean (required)",
+                    "jobAdd": "boolean (required)",
+                    "jobView": "boolean (required)",
+                    "jobUpdate": "boolean (required)",
+                    "jobDelete": "boolean (required)",
+                    "siteAdmin": "boolean (required)",
+                    "siteSeekerManagement": "boolean (required)",
+                    "siteEmployerManagement": "boolean (required)",
+                    "siteMetroAreaManagement": "boolean (required)",
+                    "sitePartnerManagement": "boolean (required)",
+                    "siteAdManagement": "boolean (required)",
+                    "siteReports": "boolean (required)",
+                    "openWebSearch": "boolean (required)",
+                    "talentMatchSearch": "boolean (required)",
+                    "diceSelect": "boolean (required)",
+                    "candidateMatchPermission": "boolean (required)",
+                    "companyPermissions": {
+                        "id": "integer (required)",
+                        "status": "string (required)",
+                        "customerContact": {
+                            "id": "string (required)",
+                            "firstName": "string (required)",
+                            "lastName": "string (required)",
+                            "middleName": "string (required)",
+                            "emailAddress": "string (required)",
+                            "phoneNumber": "string (required)",
+                            "phoneNumberExt": "string (required)",
+                            "altPhoneNumber": "string (required)",
+                            "altPhoneNumberExt": "string (required)",
+                            "faxPhoneNumber": "string (required)",
+                            "faxPhoneNumberExt": "string (required)",
+                            "addressOne": "string (required)",
+                            "addressTwo": "string (required)",
+                            "country": "string (required)",
+                            "municipality": "string (required)",
+                            "region": "string (required)",
+                            "postalCode": "string (required)",
+                            "jobPostingEmail": "string (required)",
+                            "url": "string (required)",
+                            "twitterHandle": "string (required)"
+                        },
+                        "externalId": "integer (required)",
+                        "primaryCompanyId": "integer (required)",
+                        "userName": "string (required)",
+                        "password": "string (required)",
+                        "memberCompanyList": [
+                            "integer"
+                        ],
+                        "preferences": {
+                            "preferencesId": "string (required)",
+                            "customerId": "string (required)",
+                            "recruiterId": "string (required)",
+                            "onLogin": "string (required)",
+                            "jobTypeId": "string (required)",
+                            "searchAgentId": "string (required)",
+                            "taxTerm": "string (required)",
+                            "tmViewPref": "string (required)",
+                            "tmFileFormat": "string (required)",
+                            "locationCity": "string (required)",
+                            "locationState": "string (required)",
+                            "locationAreaCode": "string (required)",
+                            "jobComment": "string (required)",
+                            "jobSeqNum": "string (required)",
+                            "applicationMethod": "string (required)",
+                            "application": "string (required)",
+                            "dashboardJobNum": "string (required)",
+                            "dashboardJobStatus": "string (required)",
+                            "applicationCcEmail": "string (required)",
+                            "locationPostalCode": "string (required)",
+                            "employmentTypes": [
+                                {
+                                    "abbr": "string (optional)",
+                                    "desc": "string (optional)",
+                                    "order": "integer (optional)",
+                                    "profileTermId": "integer (optional)",
+                                    "type": "string (optional)"
+                                }
+                            ],
+                            "displayPriPhone": "boolean (required)",
+                            "displayAltPhone": "boolean (required)",
+                            "displayPriExt": "boolean (required)",
+                            "displayAltExt": "boolean (required)",
+                            "displayFax": "boolean (required)",
+                            "displayEmail": "boolean (required)",
+                            "useLast": "boolean (required)",
+                            "tmNumJobsDisplay": "boolean (required)",
+                            "numJobsDisplay": "boolean (required)",
+                            "displayPersonName": "boolean (required)",
+                            "displayAddrLine1": "boolean (required)",
+                            "displayAddrLine2": "boolean (required)",
+                            "displayCity": "boolean (required)",
+                            "displayState": "boolean (required)",
+                            "displayZipCode": "boolean (required)",
+                            "displayDashboardJobs": "boolean (required)",
+                            "displayDashboardCandidatesFolder": "boolean (required)",
+                            "displayDashboardTM": "boolean (required)",
+                            "displayDashboardSA": "boolean (required)",
+                            "displayDashboardTalentNetwork": "boolean (required)",
+                            "displayDashboardResourceCenter": "boolean (required)",
+                            "integratedProfileOptOut": "boolean (required)",
+                            "integratedSearchOptOut": "boolean (required)",
+                            "employerAppDashboardOptOut": "boolean (required)",
+                            "countryAccess": [
+                                "string"
+                            ],
+                            "localization": "string (required)",
+                            "contractInfoModifiedDate": "string (required)"
+                        },
+                        "activeCompanyId": "integer (required)"
+                    }
+                },
+                "memberCompanyList": [
+                    "integer"
+                ],
+                "preferences": {
+                    "preferencesId": "string (required)",
+                    "customerId": "string (required)",
+                    "recruiterId": "string (required)",
+                    "onLogin": "string (required)",
+                    "jobTypeId": "string (required)",
+                    "searchAgentId": "string (required)",
+                    "taxTerm": "string (required)",
+                    "tmViewPref": "string (required)",
+                    "tmFileFormat": "string (required)",
+                    "locationCity": "string (required)",
+                    "locationState": "string (required)",
+                    "locationAreaCode": "string (required)",
+                    "jobComment": "string (required)",
+                    "jobSeqNum": "string (required)",
+                    "applicationMethod": "string (required)",
+                    "application": "string (required)",
+                    "dashboardJobNum": "string (required)",
+                    "dashboardJobStatus": "string (required)",
+                    "applicationCcEmail": "string (required)",
+                    "locationPostalCode": "string (required)",
+                    "employmentTypes": [
+                        {
+                            "abbr": "string (optional)",
+                            "desc": "string (optional)",
+                            "order": "integer (optional)",
+                            "profileTermId": "integer (optional)",
+                            "type": "string (optional)"
+                        }
+                    ],
+                    "displayPriPhone": "boolean (required)",
+                    "displayAltPhone": "boolean (required)",
+                    "displayPriExt": "boolean (required)",
+                    "displayAltExt": "boolean (required)",
+                    "displayFax": "boolean (required)",
+                    "displayEmail": "boolean (required)",
+                    "useLast": "boolean (required)",
+                    "tmNumJobsDisplay": "boolean (required)",
+                    "numJobsDisplay": "boolean (required)",
+                    "displayPersonName": "boolean (required)",
+                    "displayAddrLine1": "boolean (required)",
+                    "displayAddrLine2": "boolean (required)",
+                    "displayCity": "boolean (required)",
+                    "displayState": "boolean (required)",
+                    "displayZipCode": "boolean (required)",
+                    "displayDashboardJobs": "boolean (required)",
+                    "displayDashboardCandidatesFolder": "boolean (required)",
+                    "displayDashboardTM": "boolean (required)",
+                    "displayDashboardSA": "boolean (required)",
+                    "displayDashboardTalentNetwork": "boolean (required)",
+                    "displayDashboardResourceCenter": "boolean (required)",
+                    "integratedProfileOptOut": "boolean (required)",
+                    "integratedSearchOptOut": "boolean (required)",
+                    "employerAppDashboardOptOut": "boolean (required)",
+                    "countryAccess": [
+                        "string"
+                    ],
+                    "localization": "string (required)",
+                    "contractInfoModifiedDate": "string (required)"
+                },
+                "activeCompanyId": "integer (required)"
+            },
+            "x-stoplight": {
+                "id": "customer-response",
+                "name": "Customer Response",
+                "public": true
+            }
+        },
+        "error": {
+            "title": "Error",
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer",
+                    "description": ""
+                },
+                "message": {
+                    "type": "string",
+                    "description": "Message that would help a developer figure out the issue"
+                },
+                "field_messages": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                        "$ref": "#/definitions/error-message"
+                    }
+                }
+            },
+            "x-stoplight": {
+                "id": "error",
+                "name": "Error",
+                "public": true
+            }
+        },
+        "link": {
+            "title": "link",
+            "type": "object",
+            "properties": {
+                "rel": {
+                    "type": "string",
+                    "description": "This should be \"self\" for one of the links in the list."
+                },
+                "href": {
+                    "type": "string",
+                    "format": "uri"
+                }
+            },
+            "required": [
+                "rel",
+                "href"
+            ],
+            "x-stoplight": {
+                "id": "link",
+                "name": "link",
+                "public": true
+            }
+        },
+        "error-message": {
+            "title": "Message",
+            "type": "object",
+            "properties": {
+                "field": {
+                    "type": "string",
+                    "description": "The name of the field that errored"
+                },
+                "error_code": {
+                    "type": "integer",
+                    "description": "The unique code used to identify the error"
+                },
+                "message": {
+                    "type": "string",
+                    "description": "The reason why the field errored"
+                }
+            },
+            "x-stoplight": {
+                "id": "error-message",
+                "name": "Message",
+                "public": true
+            }
+        },
+        "base-candidate-info": {
+            "title": "putRequestPayload Input",
+            "type": "object",
+            "example": {
+                "emailAddress": "LQTvxUx7@UOfgzhiHCiPDUZlmzCCzgERKYjTCi.yblb",
+                "fraudClassification": {
+                    "reporter": "Automated",
+                    "comments": [
+                        "nisi ullamco tempor",
+                        "in exercitation",
+                        "incididunt ea minim reprehenderit i"
+                    ],
+                    "siftScore": 40,
+                    "partyType": "FirstParty",
+                    "blockStatus": "Unblocked"
+                }
+            },
+            "x-stoplight": {
+                "id": "base-candidate-info",
+                "name": "base-candidate-info",
+                "public": true
+            },
+            "properties": {
+                "emailAddress": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "The candidate email address."
+                },
+                "fraudClassification": {
+                    "$ref": "#/definitions/classification"
+                }
+            },
+            "required": [
+                "emailAddress",
+                "fraudClassification"
+            ]
+        },
+        "candidate-info": {
+            "title": "responsePayload",
+            "example": {
+                "emailAddress": "zCIphP@hugpeg.ksf",
+                "fraudClassification": {
+                    "reporter": "Manual",
+                    "siftScore": 10,
+                    "blockStatus": "Blocked",
+                    "partyType": "ThirdParty",
+                    "comments": [
+                        "This is a comment",
+                        "This is another comment"
+                    ]
+                },
+                "permissions": [
+                    "CountTowardsJobViews",
+                    "Apply",
+                    "AttemptToGoSearchable",
+                    "AttemptToGoSearchable",
+                    "GoSearchable"
+                ]
+            },
+            "x-stoplight": {
+                "id": "candidate-info",
+                "name": "candidate-info",
+                "public": true
+            },
+            "allOf": [
+                {
+                    "$ref": "#/definitions/base-candidate-info"
+                },
+                {
+                    "$ref": "#/definitions/permissions"
+                }
+            ]
+        },
+        "sns-change-notification-payload": {
+            "title": "sns-change-notification-payload",
+            "type": "object",
+            "properties": {
+                "priorState": {
+                    "$ref": "#/definitions/base-candidate-info"
+                },
+                "newState": {
+                    "$ref": "#/definitions/base-candidate-info"
+                }
+            },
+            "required": [
+                "newState"
+            ],
+            "example": {
+                "newState": {
+                    "emailAddress": "elit dolor velit laboris",
+                    "partyType": "FirstParty",
+                    "fraudClassification": {
+                        "blockStatus": "Unblocked",
+                        "reporter": "Manual",
+                        "commentary": [
+                            "nulla consectetur velit",
+                            "volup",
+                            "laborum amet sit Ut eu"
+                        ],
+                        "siftScore": 71
+                    }
+                },
+                "priorState": {
+                    "emailAddress": "ex deserunt elit dolore id",
+                    "partyType": "ThirdParty",
+                    "fraudClassification": {
+                        "blockStatus": "ShadowBanned",
+                        "reporter": "Manual",
+                        "commentary": [
+                            "irure ex ullamco",
+                            "laboris veniam ex cillum",
+                            "ullamco Lorem elit",
+                            "ullamc",
+                            "tempor eu"
+                        ],
+                        "siftScore": 28
+                    }
+                }
+            },
+            "x-stoplight": {
+                "id": "sns-change-notification-payload",
+                "name": "sns-change-notification-payload",
+                "public": true
+            }
+        },
+        "classification": {
+            "title": "classification",
+            "type": "object",
+            "description": "The candidate classification.",
+            "properties": {
+                "blockStatus": {
+                    "type": "string",
+                    "enum": [
+                        "Blocked",
+                        "Unblocked",
+                        "ShadowBanned"
+                    ],
+                    "description": "The block status of a candidate."
+                },
+                "reporter": {
+                    "type": "string",
+                    "description": "The reporter who submitted the current record status.",
+                    "enum": [
+                        "None",
+                        "Self",
+                        "Automated",
+                        "Sift",
+                        "Manual"
+                    ]
+                },
+                "comments": {
+                    "type": "array",
+                    "description": "A list of comments related to why the user has their current status.",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "siftScore": {
+                    "type": "number",
+                    "default": "",
+                    "description": "The current decision score determine by Sift.",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "partyType": {
+                    "type": "string",
+                    "enum": [
+                        "FirstParty",
+                        "ThirdParty"
+                    ],
+                    "description": "The party type of the candidate."
+                },
+                "decisionDatetime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "The date-time that this record was last updated. If not provided current UTC date and time will be used as a default"
+                }
+            },
+            "required": [
+                "blockStatus",
+                "reporter",
+                "partyType"
+            ],
+            "example": {
+                "reporter": "None",
+                "comments": [
+                    "incididunt nisi Duis",
+                    "Ut Duis tempor in cillum",
+                    "deserunt nostrud",
+                    "culpa ex qui nostrud",
+                    "sunt deserunt"
+                ],
+                "siftScore": 25,
+                "partyType": "ThirdParty",
+                "blockStatus": "Unblocked"
+            },
+            "x-stoplight": {
+                "id": "classification",
+                "name": "classification",
+                "public": true
+            }
+        },
+        "email-addresses": {
+            "title": "email-addresses",
+            "type": "object",
+            "properties": {
+                "emailAddresses": {
+                    "type": "array",
+                    "description": "A list of candidate email addresses.",
+                    "items": {
+                        "type": "string",
+                        "format": "email"
+                    }
+                }
+            },
+            "required": [
+                "emailAddresses"
+            ],
+            "example": {
+                "emailAddresses": [
+                    "pbXmfM8gPzLiiGS@VTJ.mlof",
+                    "djUpp4D@aOQHA.zz",
+                    "wcREn@hOaLTJkSazhLwIGJlvl.yg",
+                    "bJAoE5Bd4FZjz2@JTQmtgTVrriAXg.wwr",
+                    "TlIaNlQZDP8L@SjwZdzXbUbKFTUlAua.fzv"
+                ]
+            },
+            "x-stoplight": {
+                "id": "email-addresses",
+                "name": "email-addresses",
+                "public": true
+            }
+        },
+        "permissions": {
+            "title": "permissions",
+            "type": "object",
+            "properties": {
+                "permissions": {
+                    "type": "array",
+                    "description": "The valid set of permissions.",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "AttemptToGoSearchable",
+                            "GoSearchable",
+                            "AttemptToApply",
+                            "Apply",
+                            "CountTowardsJobViews"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "permissions"
+            ],
+            "example": {
+                "permissions": [
+                    "AttemptToGoSearchable",
+                    "Apply",
+                    "CountTowardsJobViews",
+                    "AttemptToGoSearchable"
+                ]
+            },
+            "x-stoplight": {
+                "id": "permissions",
+                "name": "permissions",
+                "public": true
+            }
+        },
+        "candidate-patch": {
+            "title": "candidate-patch",
+            "type": "object",
+            "description": "Request payload for candidate patch request.",
+            "properties": {
+                "emailAddress": {
+                    "type": "string",
+                    "description": "The new email address of the candidate",
+                    "format": "email"
+                }
+            },
+            "required": [
+                "emailAddress"
+            ],
+            "example": {
+                "emailAddress": "s4dVb7D7BOR3uM@J.sj"
+            },
+            "x-stoplight": {
+                "id": "candidate-patch",
+                "name": "candidate-patch",
+                "public": true
+            }
+        }
+    },
+    "x-stoplight": {
+        "version": {
+            "groups": {
+                "docs": [
+                    {
+                        "divider": false,
+                        "items": [
+                            {
+                                "_id": "PUT_candidates-emailAddress",
+                                "type": "endpoints"
+                            },
+                            {
+                                "_id": "PATCH_candidates-emailAddress",
+                                "type": "endpoints"
+                            },
+                            {
+                                "_id": "GET_candidates-emailAddress",
+                                "type": "endpoints"
+                            }
+                        ],
+                        "name": "Endpoints"
+                    },
+                    {
+                        "divider": false,
+                        "items": [
+                            {
+                                "_id": "base-candidate-info",
+                                "type": "schemas"
+                            },
+                            {
+                                "_id": "candidate-info",
+                                "type": "schemas"
+                            },
+                            {
+                                "_id": "candidate-patch",
+                                "type": "schemas"
+                            },
+                            {
+                                "_id": "classification",
+                                "type": "schemas"
+                            },
+                            {
+                                "_id": "permissions",
+                                "type": "schemas"
+                            },
+                            {
+                                "_id": "sns-change-notification-payload",
+                                "type": "schemas"
+                            }
+                        ],
+                        "name": "Models"
+                    },
+                    {
+                        "divider": false,
+                        "items": [
+                            {
+                                "_id": "standardApiResponses",
+                                "type": "traits"
+                            },
+                            {
+                                "_id": "requireApiKey",
+                                "type": "traits"
+                            },
+                            {
+                                "_id": "overrideReporter",
+                                "type": "traits"
+                            }
+                        ],
+                        "name": "Traits"
+                    },
+                    {
+                        "divider": true,
+                        "items": [],
+                        "name": "DEPRECATED"
+                    },
+                    {
+                        "divider": false,
+                        "items": [
+                            {
+                                "_id": "POST_candidates-report",
+                                "type": "endpoints"
+                            },
+                            {
+                                "_id": "email-addresses",
+                                "type": "schemas"
+                            }
+                        ],
+                        "name": "Deprecated"
+                    }
+                ],
+                "traits": [],
+                "tests": [],
+                "savedEntries": []
+            }
+        },
+        "functions": {},
+        "textSections": {},
+        "mock": {
+            "enabled": false,
+            "dynamic": false
+        }
+    },
+    "x-tests": {}
+}
