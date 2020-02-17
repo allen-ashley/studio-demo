@@ -1,0 +1,730 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "",
+        "title": "Fraud Classification (@deprecated)",
+        "description": "Repository for storing fraud classification information of candidates along with an SNS topic to publish changes"
+    },
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "ApiKey": {
+            "name": "ApiKey",
+            "type": "apiKey",
+            "in": "header"
+        }
+    },
+    "paths": {
+        "/candidates/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "operationId": "GET_candidates-id",
+                "summary": "Get Candidate",
+                "tags": [
+                    "Candidates"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/response-payload"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKey": []
+                    }
+                ],
+                "x-stoplight": {
+                    "id": "GET_candidates-id",
+                    "beforeScript": null,
+                    "afterScript": null,
+                    "public": true,
+                    "mock": {
+                        "enabled": false,
+                        "dynamic": false,
+                        "statusCode": 200
+                    }
+                }
+            }
+        }
+    },
+    "responses": {
+        "trait:201:201": {
+            "description": ""
+        },
+        "trait:401403:401": {
+            "description": ""
+        },
+        "trait:401403:403": {
+            "description": ""
+        },
+        "trait:401403404:401": {
+            "description": ""
+        },
+        "trait:401403404:403": {
+            "description": ""
+        },
+        "trait:401403404:404": {
+            "description": ""
+        }
+    },
+    "definitions": {
+        "customer-response": {
+            "title": "Customer Response",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "string",
+                    "enum": [
+                        "Active",
+                        "Inactive",
+                        "Deleted"
+                    ]
+                },
+                "customerContact": {
+                    "$ref": "#/definitions/customercontact"
+                },
+                "externalId": {
+                    "type": "integer"
+                },
+                "primaryCompanyId": {
+                    "type": "integer"
+                },
+                "userName": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "customerPermissions": {
+                    "$ref": "#/definitions/customerpermissions"
+                },
+                "memberCompanyList": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "preferences": {
+                    "$ref": "#/definitions/preferences"
+                },
+                "activeCompanyId": {
+                    "type": "integer"
+                }
+            },
+            "example": {
+                "id": "integer (required)",
+                "status": "string (required)",
+                "customerContact": {
+                    "id": "string (required)",
+                    "firstName": "string (required)",
+                    "lastName": "string (required)",
+                    "middleName": "string (required)",
+                    "emailAddress": "string (required)",
+                    "phoneNumber": "string (required)",
+                    "phoneNumberExt": "string (required)",
+                    "altPhoneNumber": "string (required)",
+                    "altPhoneNumberExt": "string (required)",
+                    "faxPhoneNumber": "string (required)",
+                    "faxPhoneNumberExt": "string (required)",
+                    "addressOne": "string (required)",
+                    "addressTwo": "string (required)",
+                    "country": "string (required)",
+                    "municipality": "string (required)",
+                    "region": "string (required)",
+                    "postalCode": "string (required)",
+                    "jobPostingEmail": "string (required)",
+                    "url": "string (required)",
+                    "twitterHandle": "string (required)"
+                },
+                "externalId": "integer (required)",
+                "primaryCompanyId": "integer (required)",
+                "userName": "string (required)",
+                "password": "string (required)",
+                "customerPermissions": {
+                    "dtnCommunications": "boolean (required)",
+                    "companyProfileAdmin": "boolean (required)",
+                    "companyNetworkAdmin": "boolean (required)",
+                    "recruiterNetworkProfile": "boolean (required)",
+                    "companyNetworkTMTab": "boolean (required)",
+                    "groupAccountAdmin": "boolean (required)",
+                    "groupAdd": "boolean (required)",
+                    "groupView": "boolean (required)",
+                    "groupUpdate": "boolean (required)",
+                    "groupDelete": "boolean (required)",
+                    "userView": "boolean (required)",
+                    "userUpdate": "boolean (required)",
+                    "userAddPrimaryGroupUsers": "boolean (required)",
+                    "userViewPrimaryGroupUsers": "boolean (required)",
+                    "userEditPrimaryGroupUsers": "boolean (required)",
+                    "userDeletePrimaryGroupUsers": "boolean (required)",
+                    "userAddAll": "boolean (required)",
+                    "userViewAll": "boolean (required)",
+                    "userEditAll": "boolean (required)",
+                    "userDeleteAll": "boolean (required)",
+                    "jobListingAdmin": "boolean (required)",
+                    "jobAdd": "boolean (required)",
+                    "jobView": "boolean (required)",
+                    "jobUpdate": "boolean (required)",
+                    "jobDelete": "boolean (required)",
+                    "siteAdmin": "boolean (required)",
+                    "siteSeekerManagement": "boolean (required)",
+                    "siteEmployerManagement": "boolean (required)",
+                    "siteMetroAreaManagement": "boolean (required)",
+                    "sitePartnerManagement": "boolean (required)",
+                    "siteAdManagement": "boolean (required)",
+                    "siteReports": "boolean (required)",
+                    "openWebSearch": "boolean (required)",
+                    "talentMatchSearch": "boolean (required)",
+                    "diceSelect": "boolean (required)",
+                    "candidateMatchPermission": "boolean (required)",
+                    "companyPermissions": {
+                        "id": "integer (required)",
+                        "status": "string (required)",
+                        "customerContact": {
+                            "id": "string (required)",
+                            "firstName": "string (required)",
+                            "lastName": "string (required)",
+                            "middleName": "string (required)",
+                            "emailAddress": "string (required)",
+                            "phoneNumber": "string (required)",
+                            "phoneNumberExt": "string (required)",
+                            "altPhoneNumber": "string (required)",
+                            "altPhoneNumberExt": "string (required)",
+                            "faxPhoneNumber": "string (required)",
+                            "faxPhoneNumberExt": "string (required)",
+                            "addressOne": "string (required)",
+                            "addressTwo": "string (required)",
+                            "country": "string (required)",
+                            "municipality": "string (required)",
+                            "region": "string (required)",
+                            "postalCode": "string (required)",
+                            "jobPostingEmail": "string (required)",
+                            "url": "string (required)",
+                            "twitterHandle": "string (required)"
+                        },
+                        "externalId": "integer (required)",
+                        "primaryCompanyId": "integer (required)",
+                        "userName": "string (required)",
+                        "password": "string (required)",
+                        "memberCompanyList": [
+                            "integer"
+                        ],
+                        "preferences": {
+                            "preferencesId": "string (required)",
+                            "customerId": "string (required)",
+                            "recruiterId": "string (required)",
+                            "onLogin": "string (required)",
+                            "jobTypeId": "string (required)",
+                            "searchAgentId": "string (required)",
+                            "taxTerm": "string (required)",
+                            "tmViewPref": "string (required)",
+                            "tmFileFormat": "string (required)",
+                            "locationCity": "string (required)",
+                            "locationState": "string (required)",
+                            "locationAreaCode": "string (required)",
+                            "jobComment": "string (required)",
+                            "jobSeqNum": "string (required)",
+                            "applicationMethod": "string (required)",
+                            "application": "string (required)",
+                            "dashboardJobNum": "string (required)",
+                            "dashboardJobStatus": "string (required)",
+                            "applicationCcEmail": "string (required)",
+                            "locationPostalCode": "string (required)",
+                            "employmentTypes": [
+                                {
+                                    "abbr": "string (optional)",
+                                    "desc": "string (optional)",
+                                    "order": "integer (optional)",
+                                    "profileTermId": "integer (optional)",
+                                    "type": "string (optional)"
+                                }
+                            ],
+                            "displayPriPhone": "boolean (required)",
+                            "displayAltPhone": "boolean (required)",
+                            "displayPriExt": "boolean (required)",
+                            "displayAltExt": "boolean (required)",
+                            "displayFax": "boolean (required)",
+                            "displayEmail": "boolean (required)",
+                            "useLast": "boolean (required)",
+                            "tmNumJobsDisplay": "boolean (required)",
+                            "numJobsDisplay": "boolean (required)",
+                            "displayPersonName": "boolean (required)",
+                            "displayAddrLine1": "boolean (required)",
+                            "displayAddrLine2": "boolean (required)",
+                            "displayCity": "boolean (required)",
+                            "displayState": "boolean (required)",
+                            "displayZipCode": "boolean (required)",
+                            "displayDashboardJobs": "boolean (required)",
+                            "displayDashboardCandidatesFolder": "boolean (required)",
+                            "displayDashboardTM": "boolean (required)",
+                            "displayDashboardSA": "boolean (required)",
+                            "displayDashboardTalentNetwork": "boolean (required)",
+                            "displayDashboardResourceCenter": "boolean (required)",
+                            "integratedProfileOptOut": "boolean (required)",
+                            "integratedSearchOptOut": "boolean (required)",
+                            "employerAppDashboardOptOut": "boolean (required)",
+                            "countryAccess": [
+                                "string"
+                            ],
+                            "localization": "string (required)",
+                            "contractInfoModifiedDate": "string (required)"
+                        },
+                        "activeCompanyId": "integer (required)"
+                    }
+                },
+                "memberCompanyList": [
+                    "integer"
+                ],
+                "preferences": {
+                    "preferencesId": "string (required)",
+                    "customerId": "string (required)",
+                    "recruiterId": "string (required)",
+                    "onLogin": "string (required)",
+                    "jobTypeId": "string (required)",
+                    "searchAgentId": "string (required)",
+                    "taxTerm": "string (required)",
+                    "tmViewPref": "string (required)",
+                    "tmFileFormat": "string (required)",
+                    "locationCity": "string (required)",
+                    "locationState": "string (required)",
+                    "locationAreaCode": "string (required)",
+                    "jobComment": "string (required)",
+                    "jobSeqNum": "string (required)",
+                    "applicationMethod": "string (required)",
+                    "application": "string (required)",
+                    "dashboardJobNum": "string (required)",
+                    "dashboardJobStatus": "string (required)",
+                    "applicationCcEmail": "string (required)",
+                    "locationPostalCode": "string (required)",
+                    "employmentTypes": [
+                        {
+                            "abbr": "string (optional)",
+                            "desc": "string (optional)",
+                            "order": "integer (optional)",
+                            "profileTermId": "integer (optional)",
+                            "type": "string (optional)"
+                        }
+                    ],
+                    "displayPriPhone": "boolean (required)",
+                    "displayAltPhone": "boolean (required)",
+                    "displayPriExt": "boolean (required)",
+                    "displayAltExt": "boolean (required)",
+                    "displayFax": "boolean (required)",
+                    "displayEmail": "boolean (required)",
+                    "useLast": "boolean (required)",
+                    "tmNumJobsDisplay": "boolean (required)",
+                    "numJobsDisplay": "boolean (required)",
+                    "displayPersonName": "boolean (required)",
+                    "displayAddrLine1": "boolean (required)",
+                    "displayAddrLine2": "boolean (required)",
+                    "displayCity": "boolean (required)",
+                    "displayState": "boolean (required)",
+                    "displayZipCode": "boolean (required)",
+                    "displayDashboardJobs": "boolean (required)",
+                    "displayDashboardCandidatesFolder": "boolean (required)",
+                    "displayDashboardTM": "boolean (required)",
+                    "displayDashboardSA": "boolean (required)",
+                    "displayDashboardTalentNetwork": "boolean (required)",
+                    "displayDashboardResourceCenter": "boolean (required)",
+                    "integratedProfileOptOut": "boolean (required)",
+                    "integratedSearchOptOut": "boolean (required)",
+                    "employerAppDashboardOptOut": "boolean (required)",
+                    "countryAccess": [
+                        "string"
+                    ],
+                    "localization": "string (required)",
+                    "contractInfoModifiedDate": "string (required)"
+                },
+                "activeCompanyId": "integer (required)"
+            },
+            "x-stoplight": {
+                "id": "customer-response",
+                "name": "Customer Response",
+                "public": true
+            }
+        },
+        "error": {
+            "title": "Error",
+            "type": "object",
+            "properties": {
+                "error_code": {
+                    "type": "integer",
+                    "description": ""
+                },
+                "message": {
+                    "type": "string",
+                    "description": "Message that would help a developer figure out the issue"
+                },
+                "field_messages": {
+                    "type": "array",
+                    "description": "",
+                    "items": {
+                        "$ref": "#/definitions/error-message"
+                    }
+                }
+            },
+            "x-stoplight": {
+                "id": "error",
+                "name": "Error",
+                "public": true
+            }
+        },
+        "link": {
+            "title": "link",
+            "type": "object",
+            "properties": {
+                "rel": {
+                    "type": "string",
+                    "description": "This should be \"self\" for one of the links in the list."
+                },
+                "href": {
+                    "type": "string",
+                    "format": "uri"
+                }
+            },
+            "required": [
+                "rel",
+                "href"
+            ],
+            "x-stoplight": {
+                "id": "link",
+                "name": "link",
+                "public": true
+            }
+        },
+        "error-message": {
+            "title": "Message",
+            "type": "object",
+            "properties": {
+                "field": {
+                    "type": "string",
+                    "description": "The name of the field that errored"
+                },
+                "error_code": {
+                    "type": "integer",
+                    "description": "The unique code used to identify the error"
+                },
+                "message": {
+                    "type": "string",
+                    "description": "The reason why the field errored"
+                }
+            },
+            "x-stoplight": {
+                "id": "error-message",
+                "name": "Message",
+                "public": true
+            }
+        },
+        "put-request-payload-input": {
+            "title": "putRequestPayload Input",
+            "type": "object",
+            "properties": {
+                "emailAddress": {
+                    "type": "string"
+                },
+                "partyType": {
+                    "type": "string",
+                    "enum": [
+                        "FirstPary",
+                        "ThirdParty"
+                    ]
+                },
+                "fraudClassification": {
+                    "type": "object",
+                    "properties": {
+                        "blockStatus": {
+                            "type": "string"
+                        },
+                        "reporter": {
+                            "type": "string",
+                            "enum": [
+                                "Compliance",
+                                "Manual",
+                                "Self",
+                                "Sift",
+                                "Simility"
+                            ]
+                        },
+                        "commentary": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "siftScore": {
+                            "type": "number"
+                        }
+                    }
+                }
+            },
+            "required": [
+                "emailAddress"
+            ],
+            "example": {
+                "emailAddress": "no.one@dhigroupinc.com",
+                "partyType": "FirstParty",
+                "fraudClassification": {
+                    "blockStatus": "Unblocked",
+                    "reporter": "Simility",
+                    "commentary": [
+                        "first commentary line",
+                        "second commentary line"
+                    ]
+                }
+            },
+            "x-stoplight": {
+                "id": "put-request-payload-input",
+                "name": "putRequestPayload Input",
+                "public": true
+            }
+        },
+        "response-payload": {
+            "title": "responsePayload",
+            "type": "object",
+            "properties": {
+                "emailAddress": {
+                    "type": "string"
+                },
+                "partyType": {
+                    "type": "string",
+                    "enum": [
+                        "FirstPary",
+                        "ThirdParty"
+                    ]
+                },
+                "fraudClassification": {
+                    "type": "object",
+                    "properties": {
+                        "blockStatus": {
+                            "type": "string",
+                            "enum": "[Blocked, Unblocked, ShadowBanned]"
+                        },
+                        "reporter": {
+                            "type": "string",
+                            "enum": "[Self, Simility, Sift, Manual]"
+                        },
+                        "commentary": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "siftScore": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "blockStatus"
+                    ]
+                },
+                "permissions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": "[Login, CrudProfile, CountTowardsJobViews, ReceiveMarketingEmail, AttemptToGoSearchable, ActuallyGoSearchable,  AttemptToApply, ActuallyApply, AttemptToContactRecruiter, ActuallyContactRecruiter]"
+                    }
+                }
+            },
+            "required": [
+                "emailAddress"
+            ],
+            "example": {
+                "emailAddress": "no.one@dhigroupinc.com",
+                "partyType": "FirstParty",
+                "fraudClassification": {
+                    "blockStatus": "Unblocked",
+                    "reporter": "Simility",
+                    "commentary": [
+                        "first commentary line",
+                        "second commentary line"
+                    ]
+                },
+                "permissions": [
+                    "AttemptToApply",
+                    "ActuallyApply"
+                ]
+            },
+            "x-stoplight": {
+                "id": "response-payload",
+                "name": "responsePayload",
+                "public": true
+            }
+        },
+        "change-notification-message": {
+            "title": "changeNotificationMessage",
+            "type": "object",
+            "properties": {
+                "priorState": {
+                    "type": "object",
+                    "properties": {
+                        "emailAddress": {
+                            "type": "string"
+                        },
+                        "partyType": {
+                            "type": "string"
+                        },
+                        "fraudClassification": {
+                            "type": "object",
+                            "properties": {
+                                "blockStatus": {
+                                    "type": "string"
+                                },
+                                "reporter": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Compliance",
+                                        "Manual",
+                                        "Self",
+                                        "Sift",
+                                        "Simility"
+                                    ]
+                                },
+                                "commentary": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "siftScore": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                },
+                "newState": {
+                    "type": "object",
+                    "properties": {
+                        "emailAddress": {
+                            "type": "string"
+                        },
+                        "partyType": {
+                            "type": "string"
+                        },
+                        "fraudClassification": {
+                            "type": "object",
+                            "properties": {
+                                "blockStatus": {
+                                    "type": "string"
+                                },
+                                "reporter": {
+                                    "type": "string",
+                                    "enum": [
+                                        "Compliance",
+                                        "Manual",
+                                        "Self",
+                                        "Sift",
+                                        "Simility"
+                                    ]
+                                },
+                                "commentary": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "siftScore": {
+                                    "type": "number"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "example": {
+                "priorState": {
+                    "emailAddress": "no.one@dhigroupinc.com",
+                    "partyType": "FirstParty",
+                    "fraudClassification": {
+                        "blockStatus": "Unblocked",
+                        "reporter": "",
+                        "commentary": [
+                            "first commentary line 1",
+                            "second commentary line 1"
+                        ]
+                    }
+                },
+                "newState": {
+                    "emailAddress": "no.one2@dhigroupinc.com",
+                    "partyType": "ThirdParty",
+                    "fraudClassification": {
+                        "blockStatus": "Blocked",
+                        "reporter": "Manual",
+                        "commentary": [
+                            "first commentary line 2",
+                            "second commentary line 2"
+                        ]
+                    }
+                }
+            },
+            "x-stoplight": {
+                "id": "change-notification-message",
+                "name": "changeNotificationMessage",
+                "public": true
+            }
+        }
+    },
+    "x-stoplight": {
+        "version": {
+            "groups": {
+                "docs": [
+                    {
+                        "divider": false,
+                        "items": [
+                            {
+                                "_id": "GET_candidates-id",
+                                "type": "endpoints"
+                            }
+                        ],
+                        "name": "Candidates"
+                    },
+                    {
+                        "name": "Models",
+                        "divider": false,
+                        "items": [
+                            {
+                                "_id": "change-notification-message",
+                                "type": "schemas"
+                            },
+                            {
+                                "_id": "put-request-payload-input",
+                                "type": "schemas"
+                            },
+                            {
+                                "_id": "response-payload",
+                                "type": "schemas"
+                            }
+                        ]
+                    }
+                ],
+                "traits": [],
+                "tests": [],
+                "savedEntries": []
+            }
+        },
+        "functions": {},
+        "textSections": {},
+        "mock": {
+            "enabled": false,
+            "dynamic": false
+        }
+    },
+    "x-tests": {}
+}
